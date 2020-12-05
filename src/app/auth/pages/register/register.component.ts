@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
@@ -12,8 +12,8 @@ import { User } from 'src/app/auth/models/user.interface';
 })
 export class RegisterComponent {
   registerForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
   constructor(private authSvc: AuthService, private router: Router) {}
